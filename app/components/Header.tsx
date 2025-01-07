@@ -1,10 +1,9 @@
 import React from "react";
 import { header } from "@/app/config/header/config";
 import Link from "next/link";
-
 const Header = () => {
   return (
-    <div className="flex items-center justify-between w-full h-14">
+    <div className="flex items-center justify-center w-full h-14 gap-24">
       <div className="flex items-center w-[450px] h-full">
         <svg
           width="448"
@@ -104,7 +103,6 @@ const Header = () => {
             </radialGradient>
           </defs>
         </svg>
-
         <div className="flex items-center justify-center"></div>
         {header.map((item) => {
           return (
@@ -113,7 +111,6 @@ const Header = () => {
             </div>
           );
         })}
-
         <div className="flex items-center justify-center">
           <button className="flex items-center justify-center text-center bg-[#EBEBEB] w-[75px] px-2 h-[32px] rounded-md text-black shadow-sm">
             Sign in
@@ -137,5 +134,4 @@ const Header = () => {
     </div>
   );
 };
-
 export default Header;

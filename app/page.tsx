@@ -3,7 +3,7 @@ import Body from "@/app/components/Body";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center w-full min-h-screen font-[family-name:var(--font-geist-sans)] gap-3 bg-white">
+    <div className="flex flex-col items-center w-full mx-auto max-w-screen-xl font-[family-name:var(--font-geist-sans)] gap-3 bg-white min-h-screen">
       <Header />
       <Body />
     </div>
