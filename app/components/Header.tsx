@@ -1,7 +1,15 @@
 import React from "react";
 import { header } from "@/app/config/header/config";
 import Link from "next/link";
-const Header = () => {
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import AuthButtons from "@/components/auth-buttons";
+import SignOutButton from "@/components/signout-button";
+
+const Header = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
   return (
     <div className="flex items-center justify-center w-full h-14 gap-24">
       <div className="flex items-center w-[450px] h-full">
@@ -111,11 +119,7 @@ const Header = () => {
             </div>
           );
         })}
-        <div className="flex items-center justify-center">
-          <button className="flex items-center justify-center text-center bg-[#EBEBEB] w-[75px] px-2 h-[32px] rounded-md text-black shadow-sm">
-            Sign in
-          </button>
-        </div>
+        {!session ? <AuthButtons /> : <SignOutButton />}
       </div>
       <div className="flex items-center w-[450px] h-full">
         <svg

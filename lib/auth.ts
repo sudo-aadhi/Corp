@@ -22,12 +22,11 @@ export const auth = betterAuth({
       const verificationUrl = `${process.env
         .BETTER_AUTH_URL!}/api/auth/verify-email?token=${token}&callbackURL=${process
         .env.EMAIL_VERIFICATION_CALLBACK_URL!}`;
-      console.log(verificationUrl);
-      // await sendEmail({
-      //   to: user.email,
-      //   subject: "Email Verification",
-      //   text: `Please verify your email by clicking the following link: ${verificationUrl}`,
-      // });
+      await sendEmail({
+        to: user.email,
+        subject: "Email Verification",
+        text: `Please verify your email by clicking the following link: ${verificationUrl}`,
+      });
     },
   },
 } satisfies BetterAuthOptions);
