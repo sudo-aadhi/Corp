@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button } from "@/modifiers/ui/button";
+import { Button } from "@/components/ui/button";
 import { ArrowRight, Moon } from "lucide-react";
 import landingScreenshot from "@/public/hero/landing-page.svg";
 import Image from "next/image";
