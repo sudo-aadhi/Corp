@@ -1,5 +1,5 @@
 CREATE TABLE "account" (
-	"id" varchar PRIMARY KEY DEFAULT '5a1ab756-b3fe-49b1-8fd8-a3e58c9a19c6' NOT NULL,
+	"id" varchar PRIMARY KEY DEFAULT '928d3f3f-3076-450e-ae40-bb5ced04afc4' NOT NULL,
 	"userId" varchar NOT NULL,
 	"accountId" varchar NOT NULL,
 	"providerId" varchar NOT NULL,
@@ -10,42 +10,44 @@ CREATE TABLE "account" (
 	"scope" varchar,
 	"idToken" varchar,
 	"password" varchar,
-	"createdAt" timestamp DEFAULT '2025-01-09 15:29:03.300',
-	"updatedAt" timestamp DEFAULT '2025-01-09 15:29:03.300',
+	"createdAt" timestamp DEFAULT '2025-01-10 12:26:57.476',
+	"updatedAt" timestamp DEFAULT '2025-01-10 12:26:57.476',
 	CONSTRAINT "account_id_unique" UNIQUE("id")
 );
 --> statement-breakpoint
 CREATE TABLE "session" (
-	"id" varchar PRIMARY KEY DEFAULT '9b6f619f-98cb-4691-b5b6-f3473525e04c' NOT NULL,
+	"id" varchar PRIMARY KEY DEFAULT '20c4dff2-d3a7-4034-9280-60ac11e4d82e' NOT NULL,
 	"userId" varchar NOT NULL,
 	"token" varchar NOT NULL,
 	"expiresAt" timestamp NOT NULL,
 	"ipAddress" varchar,
 	"userAgent" varchar,
-	"created_at" timestamp DEFAULT '2025-01-09 15:29:03.300',
-	"updated_at" timestamp DEFAULT '2025-01-09 15:29:03.300',
+	"created_at" timestamp DEFAULT '2025-01-10 12:26:57.476',
+	"updated_at" timestamp DEFAULT '2025-01-10 12:26:57.476',
 	CONSTRAINT "session_id_unique" UNIQUE("id")
 );
 --> statement-breakpoint
 CREATE TABLE "user" (
-	"id" varchar PRIMARY KEY DEFAULT '13340e5f-6585-4075-aa8b-6fdf96a75542' NOT NULL,
+	"id" varchar PRIMARY KEY DEFAULT 'fd3fa0fa-f2ee-4c75-9a08-07c4e18286ac' NOT NULL,
 	"name" varchar NOT NULL,
+	"firstName" varchar NOT NULL,
+	"lastName" varchar NOT NULL,
 	"email" varchar NOT NULL,
 	"emailVerified" boolean DEFAULT false NOT NULL,
 	"image" varchar,
-	"createdAt" timestamp DEFAULT '2025-01-09 15:29:03.299',
-	"updatedAt" timestamp DEFAULT '2025-01-09 15:29:03.299',
+	"createdAt" timestamp DEFAULT '2025-01-10 12:26:57.476',
+	"updatedAt" timestamp DEFAULT '2025-01-10 12:26:57.476',
 	CONSTRAINT "user_id_unique" UNIQUE("id"),
 	CONSTRAINT "user_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
 CREATE TABLE "verification" (
-	"id" varchar PRIMARY KEY DEFAULT '07500788-3a71-4639-87f2-776b858e3de6' NOT NULL,
+	"id" varchar PRIMARY KEY DEFAULT 'b42449cd-e779-48c8-8dc7-be4dfd8e545a' NOT NULL,
 	"identifier" varchar NOT NULL,
 	"value" varchar NOT NULL,
 	"expiresAt" timestamp NOT NULL,
-	"createdAt" timestamp DEFAULT '2025-01-09 15:29:03.300',
-	"updatedAt" timestamp DEFAULT '2025-01-09 15:29:03.300',
+	"createdAt" timestamp DEFAULT '2025-01-10 12:26:57.476',
+	"updatedAt" timestamp DEFAULT '2025-01-10 12:26:57.476',
 	CONSTRAINT "verification_id_unique" UNIQUE("id")
 );
 --> statement-breakpoint

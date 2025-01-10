@@ -4,6 +4,8 @@ import { v4 as randomUUID } from "uuid";
 export const user = pgTable("user", {
   id: varchar("id").default(randomUUID()).unique().primaryKey(),
   name: varchar("name").notNull(),
+  firstName: varchar("firstName"),
+  lastName: varchar("lastName"),
   email: varchar("email").unique().notNull(),
   emailVerified: boolean("emailVerified").default(false).notNull(),
   image: varchar("image"),

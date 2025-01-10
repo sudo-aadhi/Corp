@@ -29,7 +29,8 @@ export default function SignUp() {
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
-      name: "",
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -41,7 +42,7 @@ export default function SignUp() {
       {
         email: values.email,
         password: values.password,
-        name: values.name,
+        name: `${values.firstName} ${values.lastName}`,
       },
       {
         onRequest: () => {
@@ -77,7 +78,32 @@ export default function SignUp() {
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              {["name", "email", "password", "confirmPassword"].map((field) => (
+              <div className="flex flex-col justify-between gap-4 md:flex-row">
+                {["firstName", "lastName"].map((field) => (
+                  <FormField
+                    key={field}
+                    control={form.control}
+                    name={field as keyof z.infer<typeof signUpSchema>}
+                    render={({ field: fieldProps }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>
+                          {field === "firstName" ? "First Name" : "Last Name"}
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            type="text"
+                            placeholder={`Enter your ${field === "firstName" ? "first name" : "last name"}`}
+                            {...fieldProps}
+                            autoComplete="off"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                ))}
+              </div>
+              {["email", "password", "confirmPassword"].map((field) => (
                 <FormField
                   control={form.control}
                   key={field}

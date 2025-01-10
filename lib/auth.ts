@@ -10,6 +10,33 @@ export const auth = betterAuth({
     provider: "pg",
     schema,
   }),
+  databaseHooks: {
+    user: {
+      create: {
+        before: async (user) => {
+          return {
+            data: {
+              ...user,
+              firstName: user.name.split(" ")[0],
+              lastName: user.name.split(" ")[1],
+            },
+          };
+        },
+      },
+    },
+  },
+  user: {
+    additionalFields: {
+      firstName: {
+        type: "string",
+        required: false,
+      },
+      lastName: {
+        type: "string",
+        required: false,
+      },
+    },
+  },
   plugins: [openAPI()],
   emailAndPassword: {
     enabled: true,

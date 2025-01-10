@@ -1,6 +1,6 @@
 {
-  "id": "0aefa31d-861a-407f-b804-6a0f610de7b9",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "f72ca465-d510-48ae-b551-14ac234774fd",
+  "prevId": "2a0c0497-efe5-42e0-b137-7b30b75b3adc",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -13,7 +13,7 @@
           "type": "varchar",
           "primaryKey": true,
           "notNull": true,
-          "default": "'928d3f3f-3076-450e-ae40-bb5ced04afc4'"
+          "default": "'78344325-a772-431b-b700-9504445861cf'"
         },
         "userId": {
           "name": "userId",
@@ -80,14 +80,14 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
-          "default": "'2025-01-10 12:26:57.476'"
+          "default": "'2025-01-10 12:51:31.427'"
         },
         "updatedAt": {
           "name": "updatedAt",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
-          "default": "'2025-01-10 12:26:57.476'"
+          "default": "'2025-01-10 12:51:31.427'"
         }
       },
       "indexes": {},
@@ -129,7 +129,7 @@
           "type": "varchar",
           "primaryKey": true,
           "notNull": true,
-          "default": "'20c4dff2-d3a7-4034-9280-60ac11e4d82e'"
+          "default": "'f5e95724-975b-4019-8f6e-30646a9db5b5'"
         },
         "userId": {
           "name": "userId",
@@ -166,14 +166,14 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
-          "default": "'2025-01-10 12:26:57.476'"
+          "default": "'2025-01-10 12:51:31.426'"
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
-          "default": "'2025-01-10 12:26:57.476'"
+          "default": "'2025-01-10 12:51:31.426'"
         }
       },
       "indexes": {},
@@ -215,25 +215,19 @@
           "type": "varchar",
           "primaryKey": true,
           "notNull": true,
-          "default": "'fd3fa0fa-f2ee-4c75-9a08-07c4e18286ac'"
-        },
-        "name": {
-          "name": "name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
+          "default": "'3db0a8d6-8a04-4340-a272-61543faf719c'"
         },
         "firstName": {
           "name": "firstName",
           "type": "varchar",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "lastName": {
           "name": "lastName",
           "type": "varchar",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "email": {
           "name": "email",
@@ -259,14 +253,14 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
-          "default": "'2025-01-10 12:26:57.476'"
+          "default": "'2025-01-10 12:51:31.426'"
         },
         "updatedAt": {
           "name": "updatedAt",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
-          "default": "'2025-01-10 12:26:57.476'"
+          "default": "'2025-01-10 12:51:31.426'"
         }
       },
       "indexes": {},
@@ -301,7 +295,7 @@
           "type": "varchar",
           "primaryKey": true,
           "notNull": true,
-          "default": "'b42449cd-e779-48c8-8dc7-be4dfd8e545a'"
+          "default": "'4984a19c-f3e1-4fa4-b26f-6a457380918c'"
         },
         "identifier": {
           "name": "identifier",
@@ -326,14 +320,14 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
-          "default": "'2025-01-10 12:26:57.476'"
+          "default": "'2025-01-10 12:51:31.427'"
         },
         "updatedAt": {
           "name": "updatedAt",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
-          "default": "'2025-01-10 12:26:57.476'"
+          "default": "'2025-01-10 12:51:31.427'"
         }
       },
       "indexes": {},
