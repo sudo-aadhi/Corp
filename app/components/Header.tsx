@@ -3,8 +3,8 @@ import { header } from "@/app/config/header/config";
 import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import AuthButtons from "@/components/auth-buttons";
-import SignOutButton from "@/components/signout-button";
+import AuthButtons from "@/components/common/auth-buttons";
+import SignOutButton from "@/components/common/signout-button";
 
 const Header = async () => {
   const session = await auth.api.getSession({

@@ -10,7 +10,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import LoadingButton from "@/components/loading-button";
+import LoadingButton from "@/components/common/loading-button";
 import Link from "next/link";
 import { signInSchema } from "@/lib/zod";
 import { useForm } from "react-hook-form";
@@ -21,9 +21,12 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { ErrorContext } from "better-auth/react";
+import OrDivider from "@/components/common/or-divider";
+import Image from "next/image";
 
 export default function SignUp() {
-  const [pending, setPending] = useState(false);
+  const [emailSignInPending, setEmailSignInPending] = useState(false);
+  const [googleSignInPending, setGoogleSignInPending] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
 
@@ -35,7 +38,29 @@ export default function SignUp() {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof signInSchema>) => {
+  const handleGoogleSignIn = async () => {
+    await authClient.signIn.social(
+      {
+        provider: "google",
+        callbackURL: "/",
+      },
+      {
+        onRequest: () => {
+          setGoogleSignInPending(true);
+        },
+        onError: (ctx: ErrorContext) => {
+          toast({
+            title: "Something went wrong",
+            description: ctx.error.message ?? "Something went wrong.",
+            variant: "destructive",
+          });
+        },
+      },
+    );
+    setGoogleSignInPending(false);
+  };
+
+  const handleEmailSignIn = async (values: z.infer<typeof signInSchema>) => {
     await authClient.signIn.email(
       {
         email: values.email,
@@ -43,7 +68,7 @@ export default function SignUp() {
       },
       {
         onRequest: () => {
-          setPending(true);
+          setEmailSignInPending(true);
         },
         onSuccess: () => {
           toast({
@@ -62,7 +87,7 @@ export default function SignUp() {
         },
       },
     );
-    setPending(false);
+    setEmailSignInPending(false);
   };
 
   return (
@@ -75,7 +100,10 @@ export default function SignUp() {
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <form
+              onSubmit={form.handleSubmit(handleEmailSignIn)}
+              className="space-y-6"
+            >
               {["email", "password"].map((field) => (
                 <FormField
                   control={form.control}
@@ -121,7 +149,9 @@ export default function SignUp() {
                   )}
                 />
               ))}
-              <LoadingButton pending={pending}>Sign in</LoadingButton>
+              <LoadingButton pending={emailSignInPending}>
+                Sign in
+              </LoadingButton>
             </form>
           </Form>
           <div className="mt-4 text-center text-sm">
@@ -129,6 +159,19 @@ export default function SignUp() {
               Don&apos;t have a account? Sign up
             </Link>
           </div>
+          <OrDivider />
+          <LoadingButton
+            pending={googleSignInPending}
+            onClick={handleGoogleSignIn}
+          >
+            <Image
+              src={"/assets/google.svg"}
+              alt=""
+              width={"20"}
+              height={"20"}
+            />
+            Sign in with Google
+          </LoadingButton>
         </CardContent>
       </Card>
     </div>
