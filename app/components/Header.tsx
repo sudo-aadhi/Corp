@@ -11,8 +11,8 @@ const Header = async () => {
     headers: await headers(),
   });
   return (
-    <div className="flex items-center justify-center w-full h-14 gap-24">
-      <div className="flex items-center w-[450px] h-full">
+    <div className="flex h-14 w-full items-center justify-center gap-24">
+      <div className="flex h-full w-[450px] items-center">
         <svg
           width="448"
           height="57"
@@ -26,7 +26,7 @@ const Header = async () => {
           />
         </svg>
       </div>
-      <div className="flex w-[545px] h-full items-center justify-center gap-4  text-[#686868]">
+      <div className="flex h-full w-[545px] items-center justify-center gap-4 text-[#686868]">
         <svg
           width="24"
           height="27"
@@ -121,7 +121,7 @@ const Header = async () => {
         })}
         {!session ? <AuthButtons /> : <SignOutButton />}
       </div>
-      <div className="flex items-center w-[450px] h-full">
+      <div className="flex h-full w-[450px] items-center">
         <svg
           width="449"
           height="57"

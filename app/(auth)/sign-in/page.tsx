@@ -71,13 +71,13 @@ export default function SignUp() {
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-center text-3xl font-bold text-gray-800">
-            Create Account
+            Sign In
           </CardTitle>
         </CardHeader>
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              {["name", "email", "password", "confirmPassword"].map((field) => (
+              {["email", "password"].map((field) => (
                 <FormField
                   control={form.control}
                   key={field}
@@ -107,17 +107,27 @@ export default function SignUp() {
                           autoComplete="off"
                         />
                       </FormControl>
+                      {field === "password" && (
+                        <div className="mt-4 flex items-end justify-end text-center text-sm">
+                          <Link
+                            href="/forgot-password"
+                            className="text-primary hover:underline"
+                          >
+                            Forgot password?
+                          </Link>
+                        </div>
+                      )}
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               ))}
-              <LoadingButton pending={pending}>Sign up</LoadingButton>
+              <LoadingButton pending={pending}>Sign in</LoadingButton>
             </form>
           </Form>
           <div className="mt-4 text-center text-sm">
-            <Link href="/sign-in" className="text-primary hover:underline">
-              Already have an account? Sign in
+            <Link href="/sign-up" className="text-primary hover:underline">
+              Don&apos;t have a account? Sign up
             </Link>
           </div>
         </CardContent>
