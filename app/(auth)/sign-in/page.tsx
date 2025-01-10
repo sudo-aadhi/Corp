@@ -20,6 +20,7 @@ import { authClient } from "@/auth-client";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
+import { ErrorContext } from "better-auth/react";
 
 export default function SignUp() {
   const [pending, setPending] = useState(false);
@@ -49,8 +50,9 @@ export default function SignUp() {
             title: "Signed in successfully",
           });
           router.push("/");
+          router.refresh();
         },
-        onError: (ctx) => {
+        onError: (ctx: ErrorContext) => {
           console.log("error", ctx);
           toast({
             title: "Something went wrong",

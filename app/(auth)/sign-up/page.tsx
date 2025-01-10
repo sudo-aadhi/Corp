@@ -21,6 +21,7 @@ import { z } from "zod";
 import { authClient } from "@/auth-client";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { ErrorContext } from "better-auth/react";
 
 export default function SignUp() {
   const [pending, setPending] = useState(false);
@@ -55,7 +56,7 @@ export default function SignUp() {
               "Your account has been created. Check your email for a verification link.",
           });
         },
-        onError: (ctx) => {
+        onError: (ctx: ErrorContext) => {
           console.log("error", ctx);
           toast({
             title: "Something went wrong",
