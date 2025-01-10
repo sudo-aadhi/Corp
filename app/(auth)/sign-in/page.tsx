@@ -11,37 +11,34 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import LoadingButton from "@/components/loading-button";
-
 import Link from "next/link";
-
-import { signUpSchema } from "@/lib/zod";
+import { signInSchema } from "@/lib/zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { authClient } from "@/auth-client";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
   const [pending, setPending] = useState(false);
   const { toast } = useToast();
+  const router = useRouter();
 
-  const form = useForm<z.infer<typeof signUpSchema>>({
-    resolver: zodResolver(signUpSchema),
+  const form = useForm<z.infer<typeof signInSchema>>({
+    resolver: zodResolver(signInSchema),
     defaultValues: {
-      name: "",
       email: "",
       password: "",
-      confirmPassword: "",
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof signUpSchema>) => {
-    await authClient.signUp.email(
+  const onSubmit = async (values: z.infer<typeof signInSchema>) => {
+    await authClient.signIn.email(
       {
         email: values.email,
         password: values.password,
-        name: values.name,
       },
       {
         onRequest: () => {
@@ -49,10 +46,9 @@ export default function SignUp() {
         },
         onSuccess: () => {
           toast({
-            title: "Account created",
-            description:
-              "Your account has been created. Check your email for a verification link.",
+            title: "Signed in successfully",
           });
+          router.push("/");
         },
         onError: (ctx) => {
           console.log("error", ctx);
@@ -81,7 +77,7 @@ export default function SignUp() {
                 <FormField
                   control={form.control}
                   key={field}
-                  name={field as keyof z.infer<typeof signUpSchema>}
+                  name={field as keyof z.infer<typeof signInSchema>}
                   render={({ field: fieldProps }) => (
                     <FormItem>
                       <FormLabel>
