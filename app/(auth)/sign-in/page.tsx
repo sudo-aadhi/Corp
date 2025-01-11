@@ -102,7 +102,10 @@ export default function SignIn() {
         <CardContent>
           <Form {...form}>
             <form
-              onSubmit={form.handleSubmit(handleEmailSignIn)}
+              onSubmit={(e) => {
+                e.stopPropagation();
+                form.handleSubmit(handleEmailSignIn);
+              }}
               className="space-y-6"
             >
               {["email", "password"].map((field) => (
@@ -135,12 +138,12 @@ export default function SignIn() {
                           autoComplete="off"
                         />
                       </FormControl>
+                      <FormMessage />
                       {field === "password" && (
                         <div className="mt-4 flex items-end justify-end text-center text-sm">
                           <ForgotPasswordModal />
                         </div>
                       )}
-                      <FormMessage />
                     </FormItem>
                   )}
                 />

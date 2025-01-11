@@ -4,6 +4,8 @@ import { db } from "./db/db";
 import { sendEmail } from "@/lib/actions/email";
 import { openAPI } from "better-auth/plugins";
 import * as schema from "@/lib/db/schema/schema";
+import { SignupTemplate } from "@/constants/email/signup-template";
+import { ForgotPasswordTemplate } from "@/constants/email/reset-password-template";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -45,7 +47,7 @@ export const auth = betterAuth({
       await sendEmail({
         to: user.email,
         subject: "Reset Password",
-        text: `To reset your password, please click the following link: ${url}`,
+        html: ForgotPasswordTemplate({ reset_password_link: url }),
       });
     },
   },
@@ -59,7 +61,7 @@ export const auth = betterAuth({
       await sendEmail({
         to: user.email,
         subject: "Email Verification",
-        text: `Please verify your email by clicking the following link: ${verificationUrl}`,
+        html: SignupTemplate({ verification_link: verificationUrl }),
       });
     },
   },

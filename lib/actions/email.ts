@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use server";
 import { SendEmail } from "@/types";
 import nodemailer from "nodemailer";
 
-export async function sendEmail({ to, subject, text }: SendEmail) {
+export async function sendEmail({ to, subject, text, html }: SendEmail) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     host: process.env.SMTP_SERVER_HOST,
@@ -19,10 +20,8 @@ export async function sendEmail({ to, subject, text }: SendEmail) {
       from: process.env.SMTP_SERVER_USERNAME,
       to,
       subject,
-      text: text,
+      html,
     });
-    console.log("Message Sent", info.messageId);
-    console.log("Mail sent to", to);
     return {
       success: true,
       messageId: info.messageId,
