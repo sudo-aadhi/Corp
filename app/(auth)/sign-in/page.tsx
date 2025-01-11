@@ -23,8 +23,9 @@ import { useRouter } from "next/navigation";
 import { ErrorContext } from "better-auth/react";
 import OrDivider from "@/components/common/or-divider";
 import Image from "next/image";
+import ForgotPasswordModal from "@/components/common/forgot-password-modal";
 
-export default function SignUp() {
+export default function SignIn() {
   const [emailSignInPending, setEmailSignInPending] = useState(false);
   const [googleSignInPending, setGoogleSignInPending] = useState(false);
   const { toast } = useToast();
@@ -136,12 +137,7 @@ export default function SignUp() {
                       </FormControl>
                       {field === "password" && (
                         <div className="mt-4 flex items-end justify-end text-center text-sm">
-                          <Link
-                            href="/forgot-password"
-                            className="text-primary hover:underline"
-                          >
-                            Forgot password?
-                          </Link>
+                          <ForgotPasswordModal />
                         </div>
                       )}
                       <FormMessage />
