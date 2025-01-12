@@ -12,6 +12,9 @@ export const auth = betterAuth({
     provider: "pg",
     schema,
   }),
+  session: {
+    updateAge: 60 * 60 * 24,
+  },
   databaseHooks: {
     user: {
       create: {
