@@ -39,6 +39,12 @@ export const auth = betterAuth({
       },
     },
   },
+  account: {
+    accountLinking: {
+      enabled: true,
+      trustedProviders: ["google"],
+    },
+  },
   plugins: [openAPI()],
   emailAndPassword: {
     enabled: true,
