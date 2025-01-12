@@ -15,7 +15,7 @@ export default async function authMiddleware(req: NextRequest) {
   if (
     pathName.startsWith("/_next/static") ||
     pathName.startsWith("/_next/image") ||
-    pathName.startsWith("/api/") ||
+    pathName.startsWith("/api/auth/") ||
     /\.(png|svg|jpeg|webp|jpg|heif)$/.test(pathName)
   ) {
     return NextResponse.next();
