@@ -103,8 +103,9 @@ export default function SignIn() {
           <Form {...form}>
             <form
               onSubmit={(e) => {
+                e.preventDefault();
                 e.stopPropagation();
-                form.handleSubmit(handleEmailSignIn);
+                form.handleSubmit(handleEmailSignIn)();
               }}
               className="space-y-6"
             >

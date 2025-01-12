@@ -73,7 +73,11 @@ const ForgotPasswordModal = () => {
         </DialogHeader>
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit(handleForgotPassword)}
+            onSubmit={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              form.handleSubmit(handleForgotPassword)();
+            }}
             className="space-y-6"
           >
             <FormField
