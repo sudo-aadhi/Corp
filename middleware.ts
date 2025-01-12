@@ -5,6 +5,7 @@ import type { NextRequest } from "next/server";
 
 const authRoutes = ["/sign-in", "/sign-up"];
 const passwordRoutes = ["/reset-password"];
+const emailVerifiedRoutes = ["/email-verified"];
 
 export default async function authMiddleware(req: NextRequest) {
   const pathName = req.nextUrl.pathname;
@@ -32,6 +33,7 @@ export default async function authMiddleware(req: NextRequest) {
 
   const isAuthRoute = authRoutes.includes(pathName);
   const isPasswordRoute = passwordRoutes.includes(pathName);
+  const isEmailVerifiedRoute = emailVerifiedRoutes.includes(pathName);
 
   if (!session) {
     if (isAuthRoute) {
@@ -49,6 +51,13 @@ export default async function authMiddleware(req: NextRequest) {
   }
 
   if (isAuthRoute || isPasswordRoute) {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
+  if (isEmailVerifiedRoute) {
+    const isValid = queryParams.has("is_valid");
+    if (isValid) {
+      return NextResponse.next();
+    }
     return NextResponse.redirect(new URL("/", req.url));
   }
   return NextResponse.next();
