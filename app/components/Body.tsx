@@ -34,6 +34,7 @@ const Body = () => {
           width={845}
           height={460}
           layout="responsive"
+          priority
           draggable="false"
         />
       </div>
